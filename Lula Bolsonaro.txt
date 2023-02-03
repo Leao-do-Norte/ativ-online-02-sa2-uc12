@@ -1,0 +1,13 @@
+
+                        -------- PESSOA FÍSICA --------
+
+                        Nome: Lula Bolsonaro
+                        CPF: 11122233344
+                        Data de Nascimento: 03/02/2001
+                        Endereço: Palacio da Alvorada, 1, Próximo ao Congresso.
+
+                        Rendimento: R$ 54.678,32
+                        Imposto: R$ 2.733,92
+
+                        -------------------------------
+                        

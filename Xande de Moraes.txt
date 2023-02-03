@@ -1,0 +1,13 @@
+
+                        -------- PESSOA FÍSICA --------
+
+                        Nome: Xande de Moraes
+                        CPF: 12345678900
+                        Data de Nascimento: 01/04/1998
+                        Endereço: Rua do Julgamento, 2022, STF.
+
+                        Rendimento: R$ 35.098,34
+                        Imposto: R$ 1.754,92
+
+                        -------------------------------
+                        
