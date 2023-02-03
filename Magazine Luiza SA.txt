@@ -1,0 +1,13 @@
+
+                        -------- PESSOA JURÍDICA --------
+
+                        Nome: Magazine Luiza SA
+                        CNPJ: 47.960.950/0001-21
+                        Endereço: Rua Voluntários da Franca, 1465, Fábrica.
+                        End. Comercial: True
+
+                        Rendimento: R$ 400.567,91
+                        Imposto: R$ 36.051,11
+
+                        ---------------------------------
+                        

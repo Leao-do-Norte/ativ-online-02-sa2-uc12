@@ -203,26 +203,23 @@ do {
                     Console.WriteLine($"Razão social: ");
                     novaPJ.razaoSocial = Console.ReadLine();
 
-                    // bool cnpjValido;
-                    // do
-                    // {
-                    //     Console.WriteLine($"Digite o CNPJ: ");
-                    //     string cnpjInfo = Console.ReadLine();
+                    bool cnpjValido;
+                    do
+                    {
+                        Console.WriteLine($"Digite o CNPJ: ");
+                        string cnpj = Console.ReadLine();
                         
-                    //     cnpjValido = metodoPJ.ValidarCnpj(cnpjInfo);
+                        cnpjValido = metodoPJ.ValidarCnpj(cnpj);
 
-                    //     if (cnpjValido){
-                    //         novaPJ.cnpj = cnpjInfo;
-                    //     } else {
-                    //         Console.ForegroundColor = ConsoleColor.DarkRed;
-                    //         Console.WriteLine($"CNPJ inválido, tente novamente");
-                    //         Console.ResetColor(); 
-                    //     } 
-                    // } while (cnpjValido == false);
+                        if (cnpjValido){
+                            novaPJ.cnpj = cnpj;
+                        } else {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine($"CNPJ inválido, tente novamente");
+                            Console.ResetColor(); 
+                        } 
+                    } while (cnpjValido == false);
 
-                    Console.WriteLine($"Digite o CNPJ: ");
-                    novaPJ.cnpj = Console.ReadLine();
-                    
                     Console.WriteLine($"Informe o rendimento: ");
                     novaPJ.rendimento = float.Parse(Console.ReadLine());
                     
@@ -245,6 +242,23 @@ do {
                         novoEnd.endComercial = false;
                     }
 
+                    using (StreamWriter sw = new StreamWriter($"{novaPJ.razaoSocial}.txt"))
+                    {
+                        sw.WriteLine(@$"
+                        -------- PESSOA JURÍDICA --------
+
+                        Nome: {novaPJ.razaoSocial}
+                        CNPJ: {novaPJ.cnpj}
+                        Endereço: {novaPJ.endereco.logradouro}, {novaPJ.endereco.numero}, {novaPJ.endereco.complemento}.
+                        End. Comercial: {novaPJ.endereco.endComercial}
+
+                        Rendimento: {(novaPJ.rendimento).ToString("C")}
+                        Imposto: {metodoPJ.CalcularImposto(novaPJ.rendimento).ToString("C")}
+
+                        ---------------------------------
+                        ");
+                    }
+
                     listaPJ.Add(novaPJ);
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine($"Cadastro realizado com sucesso!");
@@ -255,28 +269,17 @@ do {
 
                 case "2":
 
-                    if (listaPJ.Count > 0)
+                using (StreamReader sr = new StreamReader("Magazine Luiza SA.txt"))
+                {
+                    string linha;
+                    while ((linha = sr.ReadLine()) != null)
                     {
-                        foreach (PessoaJuridica cadaPJuridica in listaPJ)
-                        {
-                            Console.WriteLine(@$"
-        ---------------PESSOA JURÍDICA------------------
-        Razão Social: {cadaPJuridica.razaoSocial}
-        CNPJ: {cadaPJuridica.cnpj}
-        Endereço: {cadaPJuridica.endereco.logradouro}, N° {cadaPJuridica.endereco.numero}, {cadaPJuridica.endereco.complemento}
-        -----------------------------------------------
-        CNPJ é válido? --> {cadaPJuridica.ValidarCnpj(cadaPJuridica.cnpj)}
-        -----------------------------------------------
-        Imposto a pagar: {cadaPJuridica.CalcularImposto(cadaPJuridica.rendimento).ToString("C")}
-        -----------------------------------------------");
-                            Console.WriteLine($"Para continuar, tecle enter");
-                            Console.ReadLine();
-                        }
-                    } else {
-                        Console.WriteLine($"Lista Vazia");
-                        Thread.Sleep(2000);
+                        Console.WriteLine($"{linha}");
                     }
-                    
+                }
+                Console.WriteLine($"Aperte 'Enter' para continuar");
+                Console.ReadLine();
+
                     break;
 
                 case "0":
